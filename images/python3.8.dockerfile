@@ -8,6 +8,9 @@ RUN pip install fastapi hypercorn[uvloop] hypercorn[trio] \
 COPY ./start.sh /start.sh
 RUN chmod +x /start.sh
 
+COPY ./start-reload.sh /start-reload.sh
+RUN chmod +x /start-reload.sh
+
 COPY ./hypercorn_conf.py /hypercorn_conf.py
 
 COPY ./app /app
