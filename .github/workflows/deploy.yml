@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        image:
+          - name: latest
+            python_version: "3.8"
+          - name: python3.8
+            python_version: "3.8"
+          - name: python3.8-slim
+            python_version: "3.8"
+          - name: python3.8-alpine
+            python_version: "3.8"
+
+          - name: python3.7
+            python_version: "3.7"
+          - name: python3.7-slim
+            python_version: "3.7"
+          - name: python3.7-alpine
+            python_version: "3.7"
+      fail-fast: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.7"
+      - name: Install Dependencies
+        run: python3.7 -m pip install docker
+      - name: Deploy Image
+        run: bash scripts/docker-push.sh
+        env:
+          NAME: ${{ matrix.image.name }}
+          DOCKERFILE: ${{ matrix.image.dockerfile }}
+          PYTHON_VERSION: ${{ matrix.image.python_version }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
