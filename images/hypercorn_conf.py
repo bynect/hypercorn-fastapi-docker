@@ -1,7 +1,6 @@
 import os
 import multiprocessing
 import json
-from pprint import pprint
 
 workers_per_core = os.getenv("WORKERS_PER_CORE", "1")
 use_workers_per_core = float(workers_per_core)
@@ -55,7 +54,6 @@ use_timeout = os.getenv("TIMEOUT", "120")
 use_keepalive = os.getenv("KEEP_ALIVE", "5")
 
 #env
-
 loglevel = use_log_level
 workers = use_web_concurrency
 bind = use_insecure_bind
@@ -81,4 +79,4 @@ log_data = {
     "port": tcp_port,
 }
 
-pprint(json.dumps(log_data))
+print(json.dumps(log_data, indent = 4))
