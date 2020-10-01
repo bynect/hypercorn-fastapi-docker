@@ -9,3 +9,7 @@ Docker image with Hypercorn for FastAPI apps in Python 3.7+. Ready for HTTP2.
 - [`python3.7`](images/python3.7.dockerfile)
 - [`python3.7-slim`](images/python3.7-slim.dockerfile)
 - [`python3.7-alpine`](images/python3.7-alpine.dockerfile)
+
+# hypercorn-fastapi
+
+Use FastAPI with Hypercorn, a super-fast and HTTP2 ready ASGI web server inspired by Gunicorn.
