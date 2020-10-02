@@ -31,7 +31,8 @@ assert use_ssl and any([use_certfile, use_keyfile, use_ca_certs]), "USE_SSL Requ
 host = os.getenv("HOST", "0.0.0.0")
 ssl_port = os.getenv("SSL_PORT", "443")
 tcp_port = os.getenv("TCP_PORT", "80")
-assert ssl_port != tcp_port, "SSL_PORT Must be different than TCP_PORT"
+if use_ssl:
+    assert ssl_port != tcp_port, "SSL_PORT Must be different than TCP_PORT"
 
 use_quic_bind = os.getenv("QUIC_BIND", None)
 
@@ -83,10 +84,10 @@ worker_class = use_worker_class
 workers = use_web_concurrency
 loglevel = os.getenv("LOG_LEVEL", "info")
 accesslog = use_accesslog or None
-backlog = int(os.getenv("BACKLOG", "100"))
 errorlog = use_errorlog or None
 graceful_timeout = int(use_graceful_timeout)
-debug = booleanize(os.getenv("DEBUG", "False"))
+backlog = int(os.getenv("BACKLOG", "100"))
+
 certfile = use_certfile
 ca_certs = use_ca_certs
 ciphers = use_ciphers
@@ -108,7 +109,6 @@ conf_data = {
     "bind": bind,
     "insecure_bind": insecure_bind if use_tcp and use_ssl else None,
     "quic_bind": quic_bind if use_quic_bind else None,
-    "debug": debug,
     "graceful_timeout": graceful_timeout,
     "keep_alive_timeout": keep_alive_timeout,
     "workers": workers,
