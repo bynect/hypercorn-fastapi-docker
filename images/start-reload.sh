@@ -17,13 +17,13 @@ BIND=${BIND:-"$HOST:$TCP_PORT"}
 
 LOG_LEVEL=${LOG_LEVEL:-info}
 
-PRE_START_SCRIPT=${PRE_START_SCRIPT:-/app/prestart.sh}
-if [ -f $PRE_START_SCRIPT ]
+PRE_START_PATH=${PRE_START_PATH:-/app/prestart.sh}
+if [ -f $PRE_START_PATH ]
 then
-    echo "Running script $PRE_START_SCRIPT"
-    . "$PRE_START_SCRIPT"
+    echo "Running script $PRE_START_PATH"
+    . "$PRE_START_PATH"
 else 
-    echo "There is no script $PRE_START_SCRIPT"
+    echo "There is no script $PRE_START_PATH"
 fi
 
 exec hypercorn --reload --bind $BIND --log-level $LOG_LEVEL "$APP_MODULE"

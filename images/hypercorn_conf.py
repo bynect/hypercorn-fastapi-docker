@@ -86,9 +86,7 @@ accesslog = use_accesslog or None
 backlog = int(os.getenv("BACKLOG", "100"))
 errorlog = use_errorlog or None
 graceful_timeout = int(use_graceful_timeout)
-use_reloader = booleanize(os.getenv("RELOAD", "False"))
 debug = booleanize(os.getenv("DEBUG", "False"))
-
 certfile = use_certfile
 ca_certs = use_ca_certs
 ciphers = use_ciphers
@@ -111,7 +109,6 @@ conf_data = {
     "insecure_bind": insecure_bind if use_tcp and use_ssl else None,
     "quic_bind": quic_bind if use_quic_bind else None,
     "debug": debug,
-    "use_reloader": use_reloader,
     "graceful_timeout": graceful_timeout,
     "keep_alive_timeout": keep_alive_timeout,
     "workers": workers,
