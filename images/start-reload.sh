@@ -26,4 +26,4 @@ else
     echo "There is no script $PRE_START_PATH"
 fi
 
-exec hypercorn --reload --bind $BIND --log-level $LOG_LEVEL "$APP_MODULE"
+exec hypercorn --debug --reload --bind $BIND --log-level $LOG_LEVEL "$APP_MODULE"

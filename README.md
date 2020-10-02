@@ -17,12 +17,12 @@ Docker image with [Hypercorn][hypercorn site] for [FastAPI][fastapi site] applic
 * **[Github repo][github repo]**
 * **[Docker hub][docker repo]**
 
-### Hypercorn
+#### Hypercorn
 **[Hypercorn][hypercorn site]** is an HTTP2 ready ASGI web server based on the sans-io hyper, h11, h2, and wsproto libraries and inspired by Gunicorn.
 
 Hypercorn supports HTTP/1, HTTP/2, WebSockets (over HTTP/1 and HTTP/2), ASGI/2, and ASGI/3 specifications. Hypercorn can utilise asyncio, uvloop, or trio worker types.
 
-### FastAPI
+#### FastAPI
 **[FastAPI][fastapi site]** is a modern, fast (high-performance), web framework for building APIs with Python 3.6+.
 
 The key features are:
@@ -70,7 +70,7 @@ COPY ./app /app
 ```
 
 
-### `MODULE_NAME`
+#### `MODULE_NAME`
 
 The Python "module" (file) to be imported by Hypercorn, this module would contain the actual application in a variable.
 
@@ -86,7 +86,7 @@ docker run -d -p 80:80 -e MODULE_NAME="custom_app.custom_main" myimage
 ```
 
 
-### `VARIABLE_NAME`
+#### `VARIABLE_NAME`
 
 The variable inside of the Python module that contains the FastAPI application.
 
@@ -114,7 +114,7 @@ docker run -d -p 80:80 -e VARIABLE_NAME="api" myimage
 ```
 
 
-### `APP_MODULE`
+#### `APP_MODULE`
 
 The string with the Python module and the variable name passed to Hypercorn.
 
@@ -130,7 +130,7 @@ docker run -d -p 80:80 -e APP_MODULE="custom_app.custom_main:api" myimage
 ```
 
 
-### `HYPERCORN_CONF`
+#### `HYPERCORN_CONF`
 
 The path to a Hypercorn Python configuration file.
 
@@ -151,7 +151,7 @@ docker run -d -p 80:80 -e GUNICORN_CONF="/app/custom_gunicorn_conf.py" myimage
 **Note**: that `HYPERCORN_CONF` needs the prefix `file:` for Python file, `python:` for Python module and no prefix for TOML file.
 
 
-### `WORKERS_PER_CORE`
+#### `WORKERS_PER_CORE`
 
 This image will check how many CPU cores are available in the current server running your container.
 
@@ -180,7 +180,7 @@ docker run -d -p 80:80 -e WORKERS_PER_CORE="0.5" myimage
 In a server with 8 CPU cores, this would make it start only 4 worker processes.
 
 
-### `MAX_WORKERS`
+#### `MAX_WORKERS`
 
 Set the maximum number of workers to use.
 
@@ -199,7 +199,7 @@ docker run -d -p 80:80 -e MAX_WORKERS="24" myimage
 This would make the image start at most 24 workers, independent of how many CPU cores are available in the server.
 
 
-### `WEB_CONCURRENCY`
+#### `WEB_CONCURRENCY`
 
 Override the automatic definition of number of workers.
 
@@ -216,7 +216,7 @@ docker run -d -p 80:80 -e WEB_CONCURRENCY="2" myimage
 This would make the image start 2 worker processes, independent of how many CPU cores are available in the server.
 
 
-### `HOST`
+#### `HOST`
 
 The "host" used by Hypercorn, the IP where Hypercorn will listen for requests.
 
@@ -231,7 +231,7 @@ By default:
 * `0.0.0.0`
 
 
-### `TCP_PORT`
+#### `TCP_PORT`
 
 The tcp port the container should listen on when `USE_TCP` is set to true.
 
@@ -248,7 +248,7 @@ docker run -d -p 80:8080 -e TCP_PORT="8080" myimage
 ```
 
 
-### `USE_SSL`
+#### `USE_SSL`
 
 If Hypercorn will use ssl-related options. When false ssl-related options are not used.
 
@@ -259,7 +259,7 @@ By default is set to:
 >At least one of `USE_SSL` and `USE_TCP` **MUST** be set to true.
 
 
-### `USE_TCP`
+#### `USE_TCP`
 
 If Hypercorn will use tcp-related options. When false tcp-related options are not used.
 
@@ -269,7 +269,7 @@ By default is set to:
 >At least one of `USE_SSL` and `USE_TCP` **MUST** be set to true.
 
 
-### `SSL_PORT`
+#### `SSL_PORT`
 
 The ssl port the container should listen on when `USE_SSL` is set to true.
 
@@ -287,7 +287,7 @@ docker run -d -p 443:8000 -e SSL_PORT="8000" myimage
 >Depens on `USE_SSL`
 
 
-### `BIND`
+#### `BIND`
 
 The actual host and port passed to Hypercorn.
 
@@ -308,7 +308,7 @@ docker run -d -p 80:8080 -e BIND="0.0.0.0:8080" myimage
 ```
 
 
-### `INSECURE_BIND`
+#### `INSECURE_BIND`
 
 The host and port passed to Hypercorn as fallback in HTTPS connections.
 
@@ -323,7 +323,7 @@ Otherwise, if `USE_SSL` is not set to true or `USE_TCP` is set to false, the val
 You can manually set only when the aforementioned conditions are true.
 >Depens on `USE_SSL` and `USE_TCP`
 
-### `QUIC_BIND`
+#### `QUIC_BIND`
 
 Quic bind to be used instead of bind. Not set by default.
 
@@ -334,7 +334,7 @@ docker run -d -p 80:8080 -e QUIC_BIND="0.0.0.0:8080" myimage
 ```
 
 
-### `LOG_LEVEL`
+#### `LOG_LEVEL`
 
 The log level for Hypercorn.
 
@@ -356,7 +356,7 @@ You can set it like:
 docker run -d -p 80:8080 -e LOG_LEVEL="warning" myimage
 ```
 
-### `WORKER_CLASS`
+#### `WORKER_CLASS`
 
 The worker class to be used by Hypercorn.
 
@@ -374,28 +374,28 @@ docker run -d -p 80:8080 -e WORKER_CLASS="uvloop" myimage
 ```
 
 
-### `CA_CERTS`
+#### `CA_CERTS`
 
 Path to CA certificate file. Not set by default.
 
 >Depends on `USE_SSL`
 
 
-### `CERTFILE`
+#### `CERTFILE`
 
 Path to CA certificate file. Not set by default.
 
 >Depends on `USE_SSL`
 
 
-### `KEYFILE`
+#### `KEYFILE`
 
 Path to CA certificate file. Not set by default.
 
 >Depends on `USE_SSL`
 
 
-### `CIPHERS`
+#### `CIPHERS`
 
 Ciphers used by ssl connection. By default:
 * `"ECDHE+AESGCM"`
@@ -403,7 +403,7 @@ Ciphers used by ssl connection. By default:
 >Depends on `USE_SSL`
 
 
-### `KEEP_ALIVE`
+#### `KEEP_ALIVE`
 
 The number of seconds to wait for requests on a Keep-Alive connection.
 
@@ -416,7 +416,7 @@ docker run -d -p 80:8080 -e KEEP_ALIVE="20" myimage
 ```
 
 
-### `GRACEFUL_TIMEOUT`
+#### `GRACEFUL_TIMEOUT`
 
 Timeout for graceful workers restart.
 
@@ -429,7 +429,7 @@ docker run -d -p 80:8080 -e GRACEFUL_TIMEOUT="20" myimage
 ```
 
 
-### `ACCESS_LOG`
+#### `ACCESS_LOG`
 
 The access log file to write to.
 
@@ -444,7 +444,7 @@ docker run -d -p 80:8080 -e ACCESS_LOG= myimage
 ```
 
 
-### `ERROR_LOG`
+#### `ERROR_LOG`
 
 The error log file to write to.
 
@@ -459,12 +459,12 @@ docker run -d -p 80:8080 -e ERROR_LOG= myimage
 ```
 
 
-### `BACKLOG`
+#### `BACKLOG`
 
 The maximum number of pending connections. By default set to `100`.
 
 
-### `PRE_START_PATH`
+#### `PRE_START_PATH`
 
 The path where to find the pre-start script.
 
@@ -503,6 +503,47 @@ You can override it by including a file in:
 * `/hypercorn_conf.py`
 
 <small>* ordered by priority.</small>
+
+## Development live reload
+The default program that is run is at `/start.sh`. It does everything described above.
+
+There's also a version for development with live auto-reload at:
+
+`/start-reload.sh`
+#### Details
+For development, it's useful to be able to mount the contents of the application code inside of the container as a Docker "host volume", to be able to change the code and test it live, without having to build the image every time.
+
+In that case, it's also useful to run the server with live auto-reload, so that it re-starts automatically at every code change.
+
+The additional script `/start-reload.sh` runs Hypercorn with 1 `asyncio` worker.
+
+It is ideal for development.
+
+#### Usage
+For example, instead of running:
+
+```sh
+docker run -d -p 80:80 myimage
+```
+You could run:
+```sh
+docker run -d -p 80:80 -v $(pwd):/app myimage /start-reload.sh
+```
+* `-v $(pwd):/app`: means that the directory `$(pwd)` should be mounted as a volume inside of the container at `/app`.
+* `$(pwd)`: runs pwd ("print working directory") and puts it as part of the string.
+* `/start-reload.sh`: adding something (like `/start-reload.sh`) at the end of the command, replaces the default "command" with this one. In this case, it replaces the default (`/start.sh`) with the development alternative `/start-reload.sh`.
+
+#### Development live reload - Technical Details
+As `/start-reload.sh` runs Hypercorn for debug/development purpose it doesn't use hypercorn_config file.
+
+But these environment variables will work the same as described above:
+
+* `MODULE_NAME`
+* `VARIABLE_NAME`
+* `APP_MODULE`
+* `HOST`
+* `TCP_PORT` (only tcp avaible)
+* `LOG_LEVEL`
 
 
 ## License
