@@ -6,4 +6,4 @@ version = "{0}.{1}".format(sys.version_info.major, sys.version_info.minor)
 
 @app.get("/")
 async def index():
-    return "Hello, World! From FastAPI with Hypercorn. On Python {}.".format(version)
+    return "Hello, World from FastAPI. Running on Hypercorn and Python {}.".format(version)

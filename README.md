@@ -18,7 +18,14 @@ Use FastAPI with Hypercorn, a super-fast and HTTP2 ready ASGI web server inspire
 
 ## Usage
 
-`TCP_PORT`: TCP port to be used by tcp binds or as insecure bind for SSL binds. Default `80`.
+`USE_TCP`: Specify if using tcp connection. When set to True, `TCP_PORT` will be binded either to `BIND` or `INSECURE_BIND` depending on `USE_SSL`. Default True.
+
+`USE_SSL`: Specify if using ssl connection. When set to True, `SSL_PORT` will be binded to `BIND`. Requires `KEYFILE`/`CERTFILE`/`CA_CERTS`. Default False.
+
+`TCP_PORT`: TCP port to be used by tcp binds or as fallback in insecure bind for SSL binds. Default `80`.
+
+`SSL_PORT`: SSL port to be used in ssl binds (HTTPS). Default `443`.
+
 `HOST`: Host ip or path. Default `0.0.0.0`.
 
 ## License

@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '**.dockerfile'
-      - '**.py'
+      - 'images/**'
 
 jobs:
   deploy:

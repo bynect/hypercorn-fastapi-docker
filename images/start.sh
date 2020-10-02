@@ -20,15 +20,13 @@ fi
 
 export HYPERCORN_CONF=${HYPERCORN_CONF:-$DEFAULT_CONF}
 
-export WORKER_CLASS=${WORKER_CLASS:-"asyncio"}
-
-PRE_START_PATH=${PRE_START_PATH:-/app/prestart.sh}
-if [ -f $PRE_START_PATH ]
+PRE_START_SCRIPT=${PRE_START_SCRIPT:-/app/prestart.sh}
+if [ -f $PRE_START_SCRIPT ]
 then
-    echo "Running script $PRE_START_PATH"
-    . "$PRE_START_PATH"
+    echo "Running script $PRE_START_SCRIPT"
+    . "$PRE_START_SCRIPT"
 else 
-    echo "There is no script $PRE_START_PATH"
+    echo "There is no script $PRE_START_SCRIPT"
 fi
 
-exec hypercorn -k "$WORKER_CLASS" -c "$HYPERCORN_CONF" "$APP_MODULE"
+exec hypercorn -c "$HYPERCORN_CONF" "$APP_MODULE"
