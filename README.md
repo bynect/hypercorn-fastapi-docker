@@ -17,12 +17,12 @@ Docker image with [Hypercorn][hypercorn site] for [FastAPI][fastapi site] applic
 * **[Github repo][github repo]**
 * **[Docker hub][docker repo]**
 
-#### Hypercorn
+### Hypercorn
 **[Hypercorn][hypercorn site]** is an HTTP2 ready ASGI web server based on the sans-io hyper, h11, h2, and wsproto libraries and inspired by Gunicorn.
 
 Hypercorn supports HTTP/1, HTTP/2, WebSockets (over HTTP/1 and HTTP/2), ASGI/2, and ASGI/3 specifications. Hypercorn can utilise asyncio, uvloop, or trio worker types.
 
-#### FastAPI
+### FastAPI
 **[FastAPI][fastapi site]** is a modern, fast (high-performance), web framework for building APIs with Python 3.6+.
 
 The key features are:
@@ -40,6 +40,7 @@ The key features are:
 
 ## How to use
 * You can use this image as a base image for other images, using this in your Dockerfile:
+
 ```docker
 FROM bynect/hypercorn-fastapi:python3.8-slim
 
@@ -82,7 +83,7 @@ By default:
 For example, if your main file was at `/app/custom_app/custom_main.py`, you could set it like:
 
 ```sh
-docker run -d -p 80:80 -e MODULE_NAME="custom_app.custom_main" myimage
+$ docker run -d -p 80:80 -e MODULE_NAME="custom_app.custom_main" myimage
 ```
 
 
@@ -110,7 +111,7 @@ def read_root():
 In this case `api` would be the variable with the FastAPI application. You could set it like:
 
 ```sh
-docker run -d -p 80:80 -e VARIABLE_NAME="api" myimage
+$ docker run -d -p 80:80 -e VARIABLE_NAME="api" myimage
 ```
 
 
@@ -126,7 +127,7 @@ By default, set based on the variables `MODULE_NAME` and `VARIABLE_NAME`:
 You can set it like:
 
 ```sh
-docker run -d -p 80:80 -e APP_MODULE="custom_app.custom_main:api" myimage
+$ docker run -d -p 80:80 -e APP_MODULE="custom_app.custom_main:api" myimage
 ```
 
 
@@ -145,7 +146,7 @@ By default:
 You can set it like:
 
 ```sh
-docker run -d -p 80:80 -e GUNICORN_CONF="/app/custom_gunicorn_conf.py" myimage
+$ docker run -d -p 80:80 -e GUNICORN_CONF="/app/custom_gunicorn_conf.py" myimage
 ```
 
 **Note**: that `HYPERCORN_CONF` needs the prefix `file:` for Python file, `python:` for Python module and no prefix for TOML file.
@@ -164,7 +165,7 @@ By default:
 You can set it like:
 
 ```sh
-docker run -d -p 80:80 -e WORKERS_PER_CORE="3" myimage
+$ docker run -d -p 80:80 -e WORKERS_PER_CORE="3" myimage
 ```
 
 If you used the value `3` in a server with 2 CPU cores, it would run 6 worker processes.
@@ -174,7 +175,7 @@ You can use floating point values too.
 So, for example, if you have a big server (let's say, with 8 CPU cores) running several applications, and you have a FastAPI application that you know won't need high performance. And you don't want to waste server resources. You could make it use `0.5` workers per CPU core. For example:
 
 ```sh
-docker run -d -p 80:80 -e WORKERS_PER_CORE="0.5" myimage
+$ docker run -d -p 80:80 -e WORKERS_PER_CORE="0.5" myimage
 ```
 
 In a server with 8 CPU cores, this would make it start only 4 worker processes.
@@ -193,7 +194,7 @@ By default it's not set, meaning that it's unlimited.
 You can set it like:
 
 ```sh
-docker run -d -p 80:80 -e MAX_WORKERS="24" myimage
+$ docker run -d -p 80:80 -e MAX_WORKERS="24" myimage
 ```
 
 This would make the image start at most 24 workers, independent of how many CPU cores are available in the server.
@@ -210,7 +211,7 @@ By default:
 You can set it like:
 
 ```sh
-docker run -d -p 80:80 -e WEB_CONCURRENCY="2" myimage
+$ docker run -d -p 80:80 -e WEB_CONCURRENCY="2" myimage
 ```
 
 This would make the image start 2 worker processes, independent of how many CPU cores are available in the server.
@@ -244,7 +245,7 @@ By default:
 You can set it like:
 
 ```sh
-docker run -d -p 80:8080 -e TCP_PORT="8080" myimage
+$ docker run -d -p 80:8080 -e TCP_PORT="8080" myimage
 ```
 
 
@@ -282,7 +283,7 @@ By default:
 You can set it like:
 
 ```sh
-docker run -d -p 443:8000 -e SSL_PORT="8000" myimage
+$ docker run -d -p 443:8000 -e SSL_PORT="8000" myimage
 ```
 >Depens on `USE_SSL`
 
@@ -304,7 +305,7 @@ So, if you didn't change anything, it will be set by default to:
 You can set it like:
 
 ```sh
-docker run -d -p 80:8080 -e BIND="0.0.0.0:8080" myimage
+$ docker run -d -p 80:8080 -e BIND="0.0.0.0:8080" myimage
 ```
 
 
@@ -325,12 +326,12 @@ You can manually set only when the aforementioned conditions are true.
 
 #### `QUIC_BIND`
 
-Quic bind to be used instead of bind. Not set by default.
+Quic bind to be used instead of bind. By default it's not set.
 
 You can set it like:
 
 ```sh
-docker run -d -p 80:8080 -e QUIC_BIND="0.0.0.0:8080" myimage
+$ docker run -d -p 80:8080 -e QUIC_BIND="0.0.0.0:8080" myimage
 ```
 
 
@@ -353,7 +354,7 @@ If you need to squeeze more performance sacrificing logging, set it to `warning`
 You can set it like:
 
 ```sh
-docker run -d -p 80:8080 -e LOG_LEVEL="warning" myimage
+$ docker run -d -p 80:8080 -e LOG_LEVEL="warning" myimage
 ```
 
 #### `WORKER_CLASS`
@@ -370,27 +371,27 @@ The three avaible values are:
 You can set it like:
 
 ```sh
-docker run -d -p 80:8080 -e WORKER_CLASS="uvloop" myimage
+$ docker run -d -p 80:8080 -e WORKER_CLASS="uvloop" myimage
 ```
 
 
 #### `CA_CERTS`
 
-Path to CA certificate file. Not set by default.
+Path to CA certificate file. By default it's not set.
 
 >Depends on `USE_SSL`
 
 
 #### `CERTFILE`
 
-Path to CA certificate file. Not set by default.
+Path to CA certificate file. By default it's not set.
 
 >Depends on `USE_SSL`
 
 
 #### `KEYFILE`
 
-Path to CA certificate file. Not set by default.
+Path to CA certificate file. By default it's not set.
 
 >Depends on `USE_SSL`
 
@@ -412,7 +413,7 @@ By default, set to `5`.
 You can set it like:
 
 ```sh
-docker run -d -p 80:8080 -e KEEP_ALIVE="20" myimage
+$ docker run -d -p 80:8080 -e KEEP_ALIVE="20" myimage
 ```
 
 
@@ -425,7 +426,7 @@ By default, set to `120`.
 You can set it like:
 
 ```sh
-docker run -d -p 80:8080 -e GRACEFUL_TIMEOUT="20" myimage
+$ docker run -d -p 80:8080 -e GRACEFUL_TIMEOUT="20" myimage
 ```
 
 
@@ -440,7 +441,7 @@ If you want to disable `ACCESS_LOG`, set it to an empty value.
 For example, you could disable it with:
 
 ```sh
-docker run -d -p 80:8080 -e ACCESS_LOG= myimage
+$ docker run -d -p 80:8080 -e ACCESS_LOG= myimage
 ```
 
 
@@ -455,7 +456,7 @@ If you want to disable `ERROR_LOG`, set it to an empty value.
 For example, you could disable it with:
 
 ```sh
-docker run -d -p 80:8080 -e ERROR_LOG= myimage
+$ docker run -d -p 80:8080 -e ERROR_LOG= myimage
 ```
 
 
@@ -473,7 +474,7 @@ By default, set to `/app/prestart.sh`.
 You can set it like:
 
 ```sh
-docker run -d -p 80:8080 -e PRE_START_PATH="/custom/script.sh" myimage
+$ docker run -d -p 80:8080 -e PRE_START_PATH="/custom/script.sh" myimage
 ```
 
 
@@ -523,11 +524,11 @@ It is ideal for development.
 For example, instead of running:
 
 ```sh
-docker run -d -p 80:80 myimage
+$ docker run -d -p 80:80 myimage
 ```
 You could run:
 ```sh
-docker run -d -p 80:80 -v $(pwd):/app myimage /start-reload.sh
+$ docker run -d -p 80:80 -v $(pwd):/app myimage /start-reload.sh
 ```
 * `-v $(pwd):/app`: means that the directory `$(pwd)` should be mounted as a volume inside of the container at `/app`.
 * `$(pwd)`: runs pwd ("print working directory") and puts it as part of the string.
@@ -544,6 +545,24 @@ But these environment variables will work the same as described above:
 * `HOST`
 * `TCP_PORT` (only tcp avaible)
 * `LOG_LEVEL`
+
+
+### Falsy/Truly value
+
+The included `/hypercorn_conf.py` has some options that accepts boolean value.
+These are the valid values. Invalid values will raise an exception.
+
+Falsy values (compared after lowered):
+* `"no"`
+* `"n"`
+* `"0"`
+* `"false"`
+  
+Truly values (compared after lowered):
+* `"yes"`
+* `"y"`
+* `"1"`
+* `"true"`
 
 
 ## License
