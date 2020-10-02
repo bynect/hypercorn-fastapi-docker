@@ -2,7 +2,7 @@ FROM python:3.7
 
 LABEL author="bynect <bynect@gmail.com>"
 
-RUN pip install fastapi hypercorn[uvloop] hypercorn[trio] \
+RUN python3 -m pip install hypercorn hypercorn[uvloop] hypercorn[trio] trio fastapi \
     --no-cache-dir --no-color --no-python-version-warning --disable-pip-version-check
 
 COPY ./start.sh /start.sh
