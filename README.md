@@ -568,7 +568,7 @@ Truly values (compared after lowered):
 ## License
 Licensed under MIT License.
 
-Based on [tiangolo/uvicorn-Hypercorn-docker](https://github.com/tiangolo/uvicorn-Hypercorn-docker)
+Based on [tiangolo/uvicorn-gunicorn-docker](https://github.com/tiangolo/uvicorn-gunicorn-docker)
 
 [docker tags]: https://hub.docker.com/repository/docker/bynect/hypercorn-fastapi/tags
 [docker repo]: https://hub.docker.com/repository/docker/bynect/hypercorn-fastapi
