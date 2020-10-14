@@ -41,7 +41,7 @@ The key features are:
 ## How to use
 * You can use this image as a base image for other images, using this in your Dockerfile:
 
-```docker
+```dockerfile
 FROM bynect/hypercorn-fastapi:python3.8-slim
 
 COPY ./app /app
@@ -61,7 +61,7 @@ You can set alternative values for them either from shell or from Dockerfile, e.
 #from shell
 $ docker run -d -p 80:80 -e MODULE_NAME="custom_app.custom_main" myimage
 ```
-```docker
+```dockerfile
 #from Dockerile
 FROM bynect/hypercorn-fastapi:python3.8-slim
 
