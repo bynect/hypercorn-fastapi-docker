@@ -4,6 +4,9 @@ import json
 
 #utils
 def booleanize(value) -> bool:
+    if value is None:
+        return False
+    
     falsy = ["no", "n", "0", "false"]
     truly = ["yes", "y", "1", "true"]
 
@@ -24,7 +27,7 @@ use_certfile = os.getenv("CERTFILE", None)
 use_ca_certs = os.getenv("CA_CERTS", None)
 use_ciphers = os.getenv("CIPHERS", "ECDHE+AESGCM")
 use_keyfile = os.getenv("KEYFILE", None)
-assert use_ssl and any([use_certfile, use_keyfile, use_ca_certs]), "USE_SSL Requires CERTFILE/KEYFILE/CA_CERTS"
+assert not(use_ssl and any([use_certfile, use_keyfile, use_ca_certs])), "USE_SSL Requires CERTFILE/KEYFILE/CA_CERTS"
 
 
 #binding
@@ -38,7 +41,7 @@ use_quic_bind = os.getenv("QUIC_BIND", None)
 
 use_insecure_bind = os.getenv("INSECURE_BIND", None)
 
-assert bool(use_insecure_bind) != all([use_ssl, use_tcp]), "INSECURE_BIND Must be used only when USE_SSL and USE_TCP are both set"
+assert not(bool(use_insecure_bind) != all([use_ssl, use_tcp])), "INSECURE_BIND Must be used only when USE_SSL and USE_TCP are both set"
 if use_ssl and use_tcp:
     if not use_insecure_bind:
         use_insecure_bind = "{}:{}".format(host, tcp_port)
