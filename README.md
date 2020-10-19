@@ -1,5 +1,5 @@
 
-![Deploy](https://github.com/bynect/hypercorn-fastapi/workflows/Deploy/badge.svg?branch=main)
+[![Deploy](https://github.com/bynect/hypercorn-fastapi/workflows/Deploy/badge.svg?branch=main)](https://github.com/bynect/hypercorn-fastapi-docker/actions?query=workflow%3ADeploy)
 
 ## Image tags and Dockerfiles
 
