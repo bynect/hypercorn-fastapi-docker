@@ -3,7 +3,10 @@
 
 ## Image tags and Dockerfiles
 
-* [`python3.8`, `latest`](images/python3.8.dockerfile)
+* [`python3.9`, `latest`](images/python3.9.dockerfile) (**[*](#python-39-support)**)
+* [`python3.9-slim`](images/python3.9-slim.dockerfile) (**[*](#python-39-support)**)
+* [`python3.9-alpine`](images/python3.9-alpine.dockerfile) (**[*](#python-39-support)**)
+* [`python3.8`](images/python3.8.dockerfile)
 * [`python3.8-slim`](images/python3.8-slim.dockerfile)
 * [`python3.8-alpine`](images/python3.8-alpine.dockerfile)
 * [`python3.7`](images/python3.7.dockerfile)
@@ -563,6 +566,16 @@ Truly values (compared after lowered):
 * `"y"`
 * `"1"`
 * `"true"`
+
+
+## Python 3.9 support
+
+Python 3.9 is now supported, but some optional packages are not installed due to incompatible Python version.
+
+Incompatible packages:
+* `aioquic` (`hypercorn[h3]`)
+* `trio` (`hypercorn[trio]`)
+* `uvloop` (`hypercorn[uvloop]`)
 
 
 ## License
