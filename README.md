@@ -13,19 +13,19 @@
 * [`python3.7-slim`](images/python3.7-slim.dockerfile)
 * [`python3.7-alpine`](images/python3.7-alpine.dockerfile)
 
-# hypercorn-fastapi
+# **hypercorn-fastapi-docker**
 
 Docker image with [Hypercorn][hypercorn site] for [FastAPI][fastapi site] application in Python 3.7+. With slim and alpine options.
 
 * **[Github repo][github repo]**
 * **[Docker hub][docker repo]**
 
-### Hypercorn
+## Hypercorn
 **[Hypercorn][hypercorn site]** is an HTTP2 ready ASGI web server based on the sans-io hyper, h11, h2, and wsproto libraries and inspired by Gunicorn.
 
 Hypercorn supports HTTP/1, HTTP/2, WebSockets (over HTTP/1 and HTTP/2), ASGI/2, and ASGI/3 specifications. Hypercorn can utilise asyncio, uvloop, or trio worker types.
 
-### FastAPI
+## FastAPI
 **[FastAPI][fastapi site]** is a modern, fast (high-performance), web framework for building APIs with Python 3.6+.
 
 The key features are:
@@ -41,7 +41,7 @@ The key features are:
 
 <small>* estimation based on tests on an internal development team, building production applications.</small>
 
-## How to use
+## How to start
 * You can use this image as a base image for other images, using this in your Dockerfile:
 
 ```dockerfile
