@@ -3,6 +3,7 @@ FROM python:3.9-alpine
 LABEL author="bynect <bynect@gmail.com>"
 
 RUN apk add --no-cache --virtual .build-deps gcc libc-dev libffi-dev openssl-dev build-base bsd-compat-headers make \
+    && python3 -m pip install --upgrade pip \
     && python3 -m pip install hypercorn hypercorn[uvloop] aioquic hypercorn[h3] fastapi \
     --no-cache-dir --no-color --no-python-version-warning --disable-pip-version-check \
     && apk del .build-deps gcc libc-dev make
