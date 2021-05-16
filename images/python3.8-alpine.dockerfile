@@ -2,7 +2,8 @@ FROM python:3.8-alpine
 
 LABEL author="bynect <bynect@gmail.com>"
 
-RUN apk add --no-cache --virtual .build-deps gcc libc-dev libffi-dev openssl-dev build-base bsd-compat-headers make \
+RUN apk add --no-cache --virtual .build-deps gcc libc-dev libffi-dev openssl-dev \
+    build-base bsd-compat-headers make musl-dev python3-dev cargo \
     && python3 -m pip install --upgrade pip \
     && python3 -m pip install hypercorn hypercorn[uvloop] hypercorn[trio] trio aioquic hypercorn[h3] fastapi \
     --no-cache-dir --no-color --no-python-version-warning --disable-pip-version-check \
