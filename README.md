@@ -573,10 +573,7 @@ Truly values (compared after lowered):
 Python 3.9 is now supported, but some optional packages are not installed due to incompatible Python version.
 
 Incompatible packages:
-* `aioquic` (`hypercorn[h3]`)
 * `trio` (`hypercorn[trio]`)
-* `uvloop` (`hypercorn[uvloop]`)
-
 
 ## License
 Licensed under MIT License.

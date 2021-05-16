@@ -2,7 +2,7 @@ FROM python:3.9-slim
 
 LABEL author="bynect <bynect@gmail.com>"
 
-RUN python3 -m pip install hypercorn fastapi \
+RUN python3 -m pip install hypercorn hypercorn[uvloop] aioquic hypercorn[h3] fastapi \
     --no-cache-dir --no-color --no-python-version-warning --disable-pip-version-check
 
 COPY ./start.sh /start.sh
