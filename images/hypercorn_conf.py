@@ -63,7 +63,7 @@ web_concurrency = web_concurrency = os.getenv("WEB_CONCURRENCY", None)
 
 if web_concurrency:
     use_web_concurrency = int(web_concurrency)
-    assert web_concurrency > 0, "WEB_CONCURRENCY Must be non zero"
+    assert use_web_concurrency > 0, "WEB_CONCURRENCY Must be non zero"
 else:
     use_web_concurrency = max(int(default_web_concurrency), 2)
     if workers_max:
