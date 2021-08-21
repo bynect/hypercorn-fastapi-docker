@@ -16,7 +16,7 @@ COPY ./hypercorn_conf.py /hypercorn_conf.py
 COPY ./app /app
 
 WORKDIR /app
-ENV PYTHON_PATH=/app
+ENV PYTHONPATH=/app
 
 EXPOSE 80
 EXPOSE 443
